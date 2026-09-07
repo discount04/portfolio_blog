@@ -33,7 +33,11 @@ content:
           path: journal/covers
           extensions: [jpg, jpeg, png, webp]
           rename: safe
-      - { name: draft, label: 임시 저장, type: boolean, default: true }
+      - name: draft
+        label: 사이트에 숨기기 (초안)
+        type: boolean
+        default: true
+        description: 켜두면 저장해도 Journal에 공개되지 않아요. 작성이 끝나면 끄고 다시 저장하세요.
       - name: body
         label: 본문
         type: rich-text
