@@ -1,0 +1,31 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="engagement" aria-labelledby="engagement-title">
+  <p class="engagement-kicker">GOOD · COMMENT · SUBSCRIBE</p>
+  <h2 id="engagement-title">읽고 난 생각을<br />남겨주세요.</h2>
+  <div class="engagement-actions">
+    <a href="#giscus-comments">♡ 좋아요 · 댓글</a>
+    <a href={`${base}rss.xml`} target="_blank" rel="alternate" type="application/rss+xml">＋ 새 글 구독</a>
+  </div>
+  <p class="engagement-note">좋아요와 댓글은 GitHub 로그인 후 남길 수 있어요. 구독은 RSS 리더에서 열립니다.</p>
+  <div id="giscus-comments" class="comments">
+    <script
+      src="https://giscus.app/client.js"
+      data-repo="discount04/portfolio_blog"
+      data-repo-id="R_kgDOURSu9g"
+      data-category="General"
+      data-category-id="DIC_kwDOURSu9s4DFFH6"
+      data-mapping="pathname"
+      data-strict="1"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="light"
+      data-lang="ko"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+</section>

@@ -7,7 +7,7 @@ const journal = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
-    category: z.enum(['관찰', '회고', '배움', '탐구']),
+    category: z.enum(['관찰', '회고', '배움', '탐구']).default('회고'),
     cover: z.string().optional(),
     draft: z.boolean().default(false),
   }),
