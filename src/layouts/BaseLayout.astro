@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'KORI — Product Designer',
+  description = '사람과 맥락을 깊게 읽고, 배움이 이어지는 경험을 만듭니다.',
+} = Astro.props;
+const currentPath = Astro.url.pathname;
+const nav = [
+  { href: '/work', label: 'Work' },
+  { href: '/journal', label: 'Journal' },
+  { href: '/playground', label: 'Playground' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="KORI 홈">KORI<span>°</span></a>
+      <nav aria-label="주요 메뉴">
+        {nav.map((item, index) => (
+          <a href={item.href} aria-current={currentPath.startsWith(item.href) ? 'page' : undefined}>
+            <sup>0{index + 1}</sup>{item.label}
+          </a>
+        ))}
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer>
+      <p>배우고, 깊게 파고, 나눌 수 있는 경험으로.</p>
+      <p>© {new Date().getFullYear()} KORI</p>
+    </footer>
+  </body>
+</html>

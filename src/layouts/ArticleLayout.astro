@@ -1,0 +1,15 @@
+---
+import BaseLayout from './BaseLayout.astro';
+const { title, description, date, category } = Astro.props;
+---
+
+<BaseLayout title={`${title} — KORI`} description={description}>
+  <article class="article-shell">
+    <header class="article-header">
+      <p class="eyebrow">{category} · {date}</p>
+      <h1>{title}</h1>
+      <p class="article-deck">{description}</p>
+    </header>
+    <div class="article-body"><slot /></div>
+  </article>
+</BaseLayout>

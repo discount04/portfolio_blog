@@ -1,0 +1,52 @@
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: journal
+    label: Journal
+    type: collection
+    path: src/content/journal
+    view:
+      fields: [title, date, category, draft]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: 제목, type: string, required: true }
+      - { name: description, label: 한 줄 설명, type: text, required: true }
+      - { name: date, label: 작성일, type: date, required: true }
+      - { name: category, label: 분류, type: select, options: [관찰, 회고, 배움, 탐구], default: 회고 }
+      - { name: draft, label: 임시 저장, type: boolean, default: true }
+      - { name: body, label: 본문, type: rich-text, required: true }
+  - name: work
+    label: Work
+    type: collection
+    path: src/content/work
+    view:
+      fields: [title, year, featured, draft]
+      primary: title
+      sort: [year, title]
+      default:
+        sort: year
+        order: desc
+    fields:
+      - { name: title, label: 프로젝트명, type: string, required: true }
+      - { name: description, label: 한 줄 설명, type: text, required: true }
+      - { name: role, label: 역할, type: string, required: true }
+      - { name: year, label: 연도, type: number, required: true }
+      - { name: tags, label: 태그, type: string, list: true }
+      - { name: accent, label: 포인트 색상, type: string, default: '#2456ff' }
+      - { name: featured, label: 홈에 표시, type: boolean, default: true }
+      - { name: draft, label: 임시 저장, type: boolean, default: true }
+      - { name: body, label: 프로젝트 내용, type: rich-text, required: true }
+  - name: settings
+    label: 사이트 정보
+    type: file
+    path: src/content/settings/site.json
+    fields:
+      - { name: name, label: 이름, type: string }
+      - { name: headline, label: 소개 문장, type: text }
+      - { name: email, label: 이메일, type: string }
