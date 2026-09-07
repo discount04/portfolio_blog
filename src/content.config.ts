@@ -8,6 +8,7 @@ const journal = defineCollection({
     description: z.string(),
     date: z.coerce.date(),
     category: z.enum(['관찰', '회고', '배움', '탐구']),
+    cover: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });

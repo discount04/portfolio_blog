@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-const { title, description, date, category } = Astro.props;
+import '../styles/article.css';
+const { title, description, date, category, cover } = Astro.props;
 ---
 
 <BaseLayout title={`${title} — KORI`} description={description}>
@@ -10,6 +11,7 @@ const { title, description, date, category } = Astro.props;
       <h1>{title}</h1>
       <p class="article-deck">{description}</p>
     </header>
+    {cover && <img class="article-cover" src={cover} alt="" />}
     <div class="article-body"><slot /></div>
   </article>
 </BaseLayout>

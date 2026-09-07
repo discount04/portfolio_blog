@@ -1,6 +1,11 @@
 media:
-  input: public/images
-  output: /images
+  - name: images
+    label: 이미지
+    input: public/images
+    output: /portfolio_blog/images
+    extensions: [jpg, jpeg, png, webp, gif]
+    categories: [image]
+    rename: safe
 
 content:
   - name: journal
@@ -19,8 +24,28 @@ content:
       - { name: description, label: 한 줄 설명, type: text, required: true }
       - { name: date, label: 작성일, type: date, required: true }
       - { name: category, label: 분류, type: select, options: [관찰, 회고, 배움, 탐구], default: 회고 }
+      - name: cover
+        label: 대표 이미지
+        type: image
+        required: false
+        options:
+          media: images
+          path: journal/covers
+          extensions: [jpg, jpeg, png, webp]
+          rename: safe
       - { name: draft, label: 임시 저장, type: boolean, default: true }
-      - { name: body, label: 본문, type: rich-text, required: true }
+      - name: body
+        label: 본문
+        type: rich-text
+        required: true
+        description: 제목, 목록, 인용문과 이미지를 자유롭게 추가할 수 있어요.
+        options:
+          format: markdown
+          switcher: false
+          media: images
+          path: journal
+          extensions: [jpg, jpeg, png, webp, gif]
+          rename: safe
   - name: work
     label: Work
     type: collection
