@@ -36,8 +36,8 @@ content:
       - name: draft
         label: 사이트에 숨기기 (초안)
         type: boolean
-        default: true
-        description: 켜두면 저장해도 Journal에 공개되지 않아요. 작성이 끝나면 끄고 다시 저장하세요.
+        default: false
+        description: 기본은 바로 공개됩니다. 아직 공개하지 않을 글만 이 토글을 켜고 저장하세요.
       - name: body
         label: 본문
         type: rich-text
