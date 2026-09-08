@@ -42,7 +42,7 @@ content:
         label: 본문
         type: rich-text
         required: true
-        description: 제목, 목록, 인용문과 이미지를 자유롭게 추가할 수 있어요.
+        description: 제목, 목록, 표, 인용문(callout), 코드와 이미지를 추가하면 사이트에 맞는 스타일로 자동 적용돼요.
         options:
           format: markdown
           switcher: false

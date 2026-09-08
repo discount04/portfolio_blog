@@ -13,13 +13,103 @@
   margin: 40px 0;
 }
 
+.article-body h1 {
+  margin: 0 0 40px;
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  line-height: 1.2;
+  letter-spacing: -.055em;
+}
+
+.article-body h3 {
+  margin: 38px 0 14px;
+  font-size: 1.3rem;
+  line-height: 1.45;
+}
+
+.article-body a {
+  color: #2456ff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.article-body ul,
+.article-body ol {
+  margin: 18px 0 30px;
+  padding-left: 1.4em;
+}
+
+.article-body table {
+  width: min(1120px, calc(100vw - 40px));
+  margin: 52px 50%;
+  transform: translateX(-50%);
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid rgba(17,17,17,.18);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  font-size: .98rem;
+  line-height: 1.75;
+}
+
+.article-body th,
+.article-body td {
+  padding: 26px 28px;
+  text-align: left;
+  vertical-align: top;
+  border-right: 1px solid rgba(17,17,17,.14);
+  border-bottom: 1px solid rgba(17,17,17,.14);
+}
+
+.article-body th:last-child,
+.article-body td:last-child { border-right: 0; }
+.article-body tbody tr:last-child td { border-bottom: 0; }
+.article-body th { background: #f5f5f3; font-weight: 700; }
+.article-body th:first-child,
+.article-body td:first-child { width: 34%; }
+.article-body td p { margin-bottom: 12px; }
+.article-body td ul { margin: 8px 0 0; }
+
 .article-body blockquote {
   margin: 48px 0;
-  padding: 10px 0 10px 28px;
-  border-left: 5px solid #2456ff;
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: 1.6;
+  padding: 26px 30px 26px 64px;
+  border: 1px solid rgba(36,86,255,.28);
+  border-left: 6px solid #2456ff;
+  border-radius: 14px;
+  background: #eef3ff;
+  position: relative;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.article-body blockquote::before {
+  content: '✦';
+  position: absolute;
+  left: 26px;
+  top: 25px;
+  color: #2456ff;
+}
+
+.article-body blockquote p:last-child { margin-bottom: 0; }
+
+.article-body pre {
+  margin: 40px 0;
+  padding: 24px;
+  overflow-x: auto;
+  border-radius: 14px;
+  background: #141414;
+  color: #f8f8f5;
+  font-size: .9rem;
+  line-height: 1.7;
+}
+
+.article-body :not(pre) > code {
+  padding: .16em .42em;
+  border-radius: 5px;
+  background: #edf0f5;
+  color: #d83c8c;
+  font-size: .9em;
 }
 
 .article-body hr {
@@ -45,3 +135,10 @@
 .engagement-note { font-size: .78rem; line-height: 1.6; color: #444; margin-bottom: 48px !important; }
 .comments { padding-top: 48px; border-top: 1px solid rgba(17, 17, 17, .35); }
 .giscus, .giscus-frame { width: 100%; }
+
+@media (max-width: 720px) {
+  .article-body table { display: block; overflow-x: auto; font-size: .9rem; }
+  .article-body th, .article-body td { min-width: 240px; padding: 20px; }
+  .article-body blockquote { padding: 22px 22px 22px 52px; }
+  .article-body blockquote::before { left: 20px; top: 21px; }
+}
