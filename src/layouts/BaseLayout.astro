@@ -14,10 +14,9 @@ const currentPath = Astro.url.pathname;
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 const url = (path: string) => `${base}${path.replace(/^\//, '')}`;
 const nav = [
-  { href: '/work', label: 'Work' },
-  { href: '/journal', label: 'Journal' },
-  { href: '/playground', label: 'Playground' },
-  { href: '/about', label: 'About' },
+  { href: '/work', label: 'Portfolios' },
+  { href: '/journal', label: 'Blogs' },
+  { href: '/about', label: 'Contact' },
 ];
 ---
 
@@ -32,11 +31,11 @@ const nav = [
   </head>
   <body>
     <header class="site-header">
-      <a class="wordmark" href={base} aria-label="KORI 홈">KORI<span>°</span></a>
+      <a class="wordmark" href={base} aria-label="KORI 홈">KORI.com<span>°</span></a>
       <nav aria-label="주요 메뉴">
-        {nav.map((item, index) => (
+        {nav.map((item) => (
           <a href={url(item.href)} aria-current={currentPath.includes(item.href) ? 'page' : undefined}>
-            <sup>0{index + 1}</sup>{item.label}
+            {item.label}
           </a>
         ))}
       </nav>

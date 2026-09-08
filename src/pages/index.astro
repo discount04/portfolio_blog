@@ -1,48 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import settings from '../content/settings/site.json';
-
-const journal = (await getCollection('journal', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
-const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+import HomeExperience from '../components/HomeExperience.astro';
 ---
 
-<BaseLayout>
-  <section class="hero">
-    <p class="hero-index">PORTFOLIO + JOURNAL<br />SEOUL · 2026</p>
-    <h1>{settings.headline}</h1>
-    <div class="hero-statement">
-      <span>Product Designer</span>
-      <span>Education · Kids · Content</span>
-    </div>
-    <a class="scroll-cue" href="#selected">Selected work ↓</a>
-  </section>
-
-  <section class="section-shell coming-home" id="selected">
-    <header class="section-heading">
-      <p>01 / WORK</p>
-      <h2>포트폴리오를<br />정리하고 있습니다.</h2>
-    </header>
-    <p class="coming-note">문제를 발견한 순간부터 결과와 회고까지, 작업의 전 과정을 곧 공개할게요.</p>
-    <a class="text-link" href={`${base}work`}>준비 중인 페이지 보기 →</a>
-  </section>
-
-  <section class="section-shell journal-preview">
-    <header class="section-heading">
-      <p>02 / JOURNAL</p>
-      <h2>생각이 바뀐 흔적</h2>
-    </header>
-    <div class="journal-list">
-      {journal.map((post) => (
-        <a href={`${base}journal/${post.id}/`}>
-          <span>{post.data.category}</span>
-          <h3>{post.data.title}</h3>
-          <time>{post.data.date.toLocaleDateString('ko-KR')}</time>
-        </a>
-      ))}
-    </div>
-    <a class="text-link light" href={`${base}journal`}>저널 계속 읽기 →</a>
-  </section>
+<BaseLayout title="KORI.com — Product Designer" description="I dive deep, then spread what I discover.">
+  <HomeExperience />
 </BaseLayout>

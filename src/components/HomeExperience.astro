@@ -1,0 +1,61 @@
+---
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+const cards = [
+  { id: 'deep', title: 'I Dive Deep', image: `${base}images/card-dive.png`, activities: ['Public Restroom Safety UX Mission', 'UXO × UXIM × KHUX UX Ideathon', 'Apple Developer Academy @ POSTECH'] },
+  { id: 'spread', title: 'I Spread', image: `${base}images/card-spread.png`, activities: ['Led UX Ideathon with UXIM and KHUX', 'Led UXO Vibe Coding Session', 'Design Insight @digo.ada'] },
+  { id: 'contents', title: 'I turn into Contents', image: `${base}images/card-content.png`, activities: ['‘Korikamen’ Game using Apple Pencil', '‘Apple Dance Academy’ Lesson', '‘DanceWMe’ App for College Dancers'] },
+];
+---
+
+<div class="splash" data-splash aria-label="KORI portfolio opening">
+  <p class="splash-copy">A dandelion takes root deeply<br />and spreads its seeds far and wide.</p>
+  <img class="splash-flower" src={`${base}images/dandelion-main.svg`} alt="" />
+  <img class="splash-seed seed-a" src={`${base}images/dandelion-seed-1.svg`} alt="" />
+  <img class="splash-seed seed-b" src={`${base}images/dandelion-seed-2.svg`} alt="" />
+  <img class="splash-seed seed-c" src={`${base}images/dandelion-seed-3.svg`} alt="" />
+  <button class="splash-skip" type="button">Skip</button>
+</div>
+
+<section class="home-stage" aria-labelledby="home-title">
+  <h1 id="home-title">I <button type="button" data-word="deep">dive deep</button>,<br />then <button type="button" data-word="spread">spread</button> what I <button type="button" data-word="contents">discover</button>.</h1>
+  <div class="experience-layout">
+    <aside class="activity-panel" aria-live="polite">
+      <p class="activity-label">SELECTED EXPERIENCE</p>
+      {cards.map((card, cardIndex) => (
+        <ol data-activity={card.id} class:list={{ active: cardIndex === 0 }}>
+          {card.activities.map((activity) => <li>{activity}</li>)}
+        </ol>
+      ))}
+    </aside>
+    <div class="experience-cards" role="list" aria-label="KORI identity cards">
+      {cards.map((card, index) => (
+        <button type="button" class:list={['identity-card', `card-${card.id}`, { active: index === 0 }]} data-card={card.id} aria-pressed={index === 0 ? 'true' : 'false'} role="listitem">
+          <span>{card.title}</span><img src={card.image} alt="" />
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const splash = document.querySelector<HTMLElement>('[data-splash]');
+  const closeSplash = () => splash?.classList.add('is-done');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) closeSplash();
+  else window.setTimeout(closeSplash, 2400);
+  splash?.querySelector('button')?.addEventListener('click', closeSplash);
+
+  const cards = [...document.querySelectorAll<HTMLButtonElement>('[data-card]')];
+  const words = [...document.querySelectorAll<HTMLButtonElement>('[data-word]')];
+  const panels = [...document.querySelectorAll<HTMLOListElement>('[data-activity]')];
+  const activate = (id: string) => {
+    cards.forEach((card) => { const active = card.dataset.card === id; card.classList.toggle('active', active); card.setAttribute('aria-pressed', String(active)); });
+    words.forEach((word) => word.classList.toggle('active', word.dataset.word === id));
+    panels.forEach((panel) => panel.classList.toggle('active', panel.dataset.activity === id));
+  };
+  [...cards, ...words].forEach((item) => {
+    const id = item.dataset.card ?? item.dataset.word;
+    item.addEventListener('mouseenter', () => id && activate(id));
+    item.addEventListener('focus', () => id && activate(id));
+    item.addEventListener('click', () => id && activate(id));
+  });
+</script>
