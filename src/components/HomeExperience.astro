@@ -1,1 +1,61 @@
-<section class="home" data-home><nav><a href="/portfolio_blog/"><img src="/portfolio_blog/images/home-v3/Home.png" alt="Home"></a><a href="/portfolio_blog/work/"><img src="/portfolio_blog/images/home-v3/Portfolios.png" alt="Portfolios"></a><a href="/portfolio_blog/journal/"><img src="/portfolio_blog/images/home-v3/Blogs.png" alt="Blogs"></a><a href="/portfolio_blog/about/"><img src="/portfolio_blog/images/home-v3/Contact.png" alt="Contact"></a></nav><img class="copy" src="/portfolio_blog/images/home-final/which-one.png" alt="Which one is Kori? All of them."><button class="identity diver"><img src="/portfolio_blog/images/home-v4/codex-clipboard-dab76c1f-9eb7-40e5-a61d-bfbdb3a475a5.png" alt="The Deep Diver"></button><button class="identity explorer"><img src="/portfolio_blog/images/home-v4/codex-clipboard-b6906622-9ea8-4eaf-8608-8e1c37585985.png" alt="The Explorer"></button><button class="identity aligner"><img src="/portfolio_blog/images/home-v4/codex-clipboard-cb4a0ab6-5b5a-494c-be5a-43e29f70acb2.png" alt="The Aligner"></button><button class="identity synth"><img src="/portfolio_blog/images/home-v4/codex-clipboard-3da59d8d-f0d1-48d4-a316-a320e39d9544.png" alt="The Synthesizer"></button></section><script>const home=document.querySelector('[data-home]');if(home&&!matchMedia('(prefers-reduced-motion: reduce)').matches){let x=0,y=0;window.addEventListener('pointermove',e=>{x=(e.clientX/innerWidth-.5)*8;y=(e.clientY/innerHeight-.5)*8;home.style.setProperty('--px',x+'px');home.style.setProperty('--py',y+'px')},{passive:true})}</script><style>:global(.site-header),:global(footer){display:none!important}.home{--px:0px;--py:0px;position:relative;width:100vw;height:100vh;min-height:640px;overflow:hidden;background:url('/portfolio_blog/images/home-v3/bg.png') center/cover no-repeat;transition:background-position 1.2s ease}.home:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.075) 50%,transparent 65%);mix-blend-mode:screen;animation:shimmer 12s ease-in-out infinite}.home nav{position:absolute;z-index:8;top:.45%;right:4.15%;display:grid;justify-items:end;gap:1.05vw}.home nav img{display:block;height:auto}.home nav a:nth-child(1) img{width:5.1vw}.home nav a:nth-child(2) img{width:8vw}.home nav a:nth-child(3) img{width:4.6vw}.home nav a:nth-child(4) img{width:6.7vw}.copy{position:absolute;z-index:2;width:calc(28% * .88);left:5.5%;top:41%;transform:translate(calc(var(--px)*-.18),calc(var(--py)*-.18));transition:transform .9s ease}.identity{position:absolute;z-index:3;margin:0;padding:0;border:0;background:transparent;transition:transform 1s ease}.identity img{display:block;width:100%;height:auto}.diver{width:calc(28% * .88);left:18.5%;top:3.2%;transform:translate(var(--px),var(--py));animation:drift-a 6.5s ease-in-out infinite}.explorer{width:calc(19.3% * .88);left:46%;top:45.5%;transform:translate(calc(var(--px)*-.7),calc(var(--py)*-.7));animation:drift-b 7.4s ease-in-out infinite}.aligner{width:calc(24% * .88);right:6.5%;bottom:8.5%;transform:translate(calc(var(--px)*-.45),calc(var(--py)*-.45));animation:drift-a 8.2s ease-in-out infinite reverse}.synth{width:calc(24% * .88);left:13.5%;bottom:5.5%;transform:translate(calc(var(--px)*.5),calc(var(--py)*.5));animation:drift-b 6.8s ease-in-out infinite reverse}@keyframes drift-a{50%{translate:0 -7px}}@keyframes drift-b{50%{translate:0 6px}}@keyframes shimmer{0%,100%{transform:translateX(-18%);opacity:.15}50%{transform:translateX(18%);opacity:.48}}@media(max-width:700px){.home{min-height:560px;background-position:53% center}.home nav{top:1.2%;right:4%;gap:2vw}.home nav a:nth-child(1) img{width:11vw}.home nav a:nth-child(2) img{width:17vw}.home nav a:nth-child(3) img{width:10vw}.home nav a:nth-child(4) img{width:14vw}.copy{width:calc(44% * .88);left:6%;top:35%}.diver{width:calc(53% * .88);left:19%;top:5%}.explorer{width:calc(37% * .88);left:49%;top:48%}.aligner{width:calc(47% * .88);right:-3%;bottom:11%}.synth{width:calc(47% * .88);left:3%;bottom:5%}}@media(prefers-reduced-motion:reduce){.home:after,.identity{animation:none}.identity,.copy{transition:none}}</style>
+---
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+
+const identities = [
+  { id: 'diver', label: 'The Deep Diver', body: '하나의 문제에 오래 머물며, 보이는 현상 너머의 원인을 파고듭니다.' },
+  { id: 'explorer', label: 'The Explorer', body: '호기심을 따라 낯선 길의 지도를 펼칩니다.' },
+  { id: 'aligner', label: 'The Aligner', body: '사람과 사람 사이의 흐름을 다정하게 연결합니다.' },
+  { id: 'synthesizer', label: 'The Synthesizer', body: '작은 조각들을 모아 의미 있는 다음 장면을 만듭니다.' },
+];
+---
+
+<section class="home" data-kori-home aria-label="Kori identities">
+  <nav class="home-nav" aria-label="Main navigation">
+    <a href={base} aria-label="Home"><img src={`${base}images/home-v3/Home.png`} alt="" /></a>
+    <a href={`${base}work/`} aria-label="Portfolios"><img src={`${base}images/home-v3/Portfolios.png`} alt="" /></a>
+    <a href={`${base}journal/`} aria-label="Blogs"><img src={`${base}images/home-v3/Blogs.png`} alt="" /></a>
+    <a href={`${base}about/`} aria-label="Contact"><img src={`${base}images/home-v3/Contact.png`} alt="" /></a>
+  </nav>
+
+  <img class="home-copy" src={`${base}images/home-final/which-one.png`} alt="Which one is Kori? All of them." />
+
+  {identities.map((identity) => (
+    <button class:list={['identity', identity.id]} type="button" data-identity={identity.id} aria-pressed="false" aria-label={`${identity.label}: ${identity.body}`}>
+      <img src={`${base}images/home-v3/${identity.id === 'synthesizer' ? 'synthesizer' : identity.id}.png`} alt="" />
+    </button>
+  ))}
+
+  <aside class="identity-card" aria-live="polite" hidden>
+    <button class="identity-close" type="button" aria-label="Close">×</button>
+    <h2></h2><p></p>
+  </aside>
+</section>
+
+<script>
+  const home = document.querySelector<HTMLElement>('[data-kori-home]');
+  const identities = [...document.querySelectorAll<HTMLButtonElement>('[data-identity]')];
+  const card = document.querySelector<HTMLElement>('.identity-card');
+  const cardTitle = card?.querySelector('h2');
+  const cardBody = card?.querySelector('p');
+  const close = () => { home?.classList.remove('is-selected'); identities.forEach((item) => item.setAttribute('aria-pressed', 'false')); if (card) card.hidden = true; };
+  identities.forEach((item) => item.addEventListener('click', () => {
+    const same = item.getAttribute('aria-pressed') === 'true'; close(); if (same) return;
+    home?.classList.add('is-selected'); item.setAttribute('aria-pressed', 'true');
+    if (card && cardTitle && cardBody) { const [title, body] = item.getAttribute('aria-label')?.split(': ') ?? []; cardTitle.textContent = title; cardBody.textContent = body; card.hidden = false; }
+  }));
+  card?.querySelector('.identity-close')?.addEventListener('click', close);
+</script>
+
+<style is:global>
+  .site-header, footer { display: none; }
+  .home { position: relative; width: 100vw; height: 100vh; min-height: 640px; overflow: hidden; isolation: isolate; background: url('/portfolio_blog/images/home-v3/bg.png') center / cover no-repeat; }
+  .home-nav { position: absolute; z-index: 10; top: .45%; right: 4.15%; display: grid; justify-items: end; gap: 1.05vw; }
+  .home-nav a { display: block; line-height: 0; transition: opacity .2s ease; }.home-nav a:hover, .home-nav a:focus-visible { opacity: .72; }.home-nav img { display: block; height: auto; }
+  .home-nav a:nth-child(1) img { width: 5.1vw; }.home-nav a:nth-child(2) img { width: 8vw; }.home-nav a:nth-child(3) img { width: 4.6vw; }.home-nav a:nth-child(4) img { width: 6.7vw; }
+  .home-copy { position: absolute; z-index: 2; width: 28%; left: 5.5%; top: 41%; height: auto; }
+  .identity { position: absolute; z-index: 3; display: block; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; transition: opacity .28s ease, filter .28s ease, transform .28s ease; }.identity img { display: block; width: 100%; height: auto; }
+  .diver { width: 28%; left: 18.5%; top: 3.2%; }.explorer { width: 19.3%; left: 46%; top: 45.5%; }.aligner { width: 24%; right: 6.5%; bottom: 8.5%; }.synthesizer { width: 24%; left: 13.5%; bottom: 5.5%; }
+  .identity:hover, .identity:focus-visible, .identity[aria-pressed='true'] { transform: scale(1.025); }.home.is-selected .identity:not([aria-pressed='true']) { opacity: .26; filter: grayscale(.25); }
+  .identity-card { position: absolute; z-index: 11; right: 4.2%; bottom: 5%; width: min(310px, 25vw); padding: 20px 42px 20px 22px; color: #111; background: rgba(255,255,255,.94); box-shadow: 0 10px 24px rgba(0,0,0,.2); font-family: 'PingFang HK', sans-serif; }.identity-card h2 { margin: 0 0 9px; font: 400 clamp(23px,2vw,34px)/1 'Instrument Serif', serif; }.identity-card p { margin: 0; font-size: 13px; line-height: 1.55; }.identity-close { position: absolute; top: 7px; right: 10px; border: 0; background: transparent; color: inherit; font-size: 28px; cursor: pointer; }
+  @media (max-width: 700px) { .home { min-height: 560px; background-position: 53% center; }.home-nav { top: 1.2%; right: 4%; gap: 2vw; }.home-nav a:nth-child(1) img { width: 11vw; }.home-nav a:nth-child(2) img { width: 17vw; }.home-nav a:nth-child(3) img { width: 10vw; }.home-nav a:nth-child(4) img { width: 14vw; }.home-copy { width: 44%; left: 6%; top: 35%; }.diver { width: 53%; left: 19%; top: 5%; }.explorer { width: 37%; left: 49%; top: 48%; }.aligner { width: 47%; right: -3%; bottom: 11%; }.synthesizer { width: 47%; left: 3%; bottom: 5%; }.identity-card { right: 5%; bottom: 4%; width: min(270px,65vw); } }
+</style>

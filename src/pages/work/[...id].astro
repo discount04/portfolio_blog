@@ -1,21 +1,42 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+
 export async function getStaticPaths() {
   const entries = await getCollection('work', ({ data }) => !data.draft);
-  return entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+  const figmaProjects = [
+    { id: 'connext', title: 'Co:N-next', image: 'connext-detail.jpeg' },
+    { id: 'walla', title: 'WALLA', image: 'walla-detail.jpeg' },
+    { id: 'korikamen', title: 'KoriKamen', image: 'korikamen-detail.jpeg' },
+    { id: 'apple-ogize', title: 'Apple-ogize', image: 'apple-ogize-detail.jpeg' },
+  ];
+  return [
+    ...entries.map((entry) => ({ params: { id: entry.id }, props: { entry } })),
+    ...figmaProjects.map((figmaCase) => ({ params: { id: figmaCase.id }, props: { figmaCase } })),
+  ];
 }
-const { entry } = Astro.props;
-const { Content } = await render(entry);
+
+const { entry, figmaCase } = Astro.props;
+const { Content } = entry ? await render(entry) : { Content: null };
 ---
-<BaseLayout title={`${entry.data.title} — KORI`} description={entry.data.description}>
-  <article class="case-shell" style={`--accent:${entry.data.accent}`}>
-    <header class="case-header">
-      <p class="eyebrow">{entry.data.role} · {entry.data.year}</p>
-      <h1>{entry.data.title}</h1>
-      <p>{entry.data.description}</p>
-      <div>{entry.data.tags.map((tag) => <span>#{tag}</span>)}</div>
-    </header>
-    <div class="article-body"><Content /></div>
-  </article>
-</BaseLayout>
+{figmaCase ? (
+  <BaseLayout title={`${figmaCase.title} — HARIN PARK`} description={`${figmaCase.title} portfolio case study`}>
+    <main class="figma-project-detail" aria-label={`${figmaCase.title} portfolio`}>
+      <img src={`${base}images/portfolio/details/${figmaCase.image}`} alt={`${figmaCase.title} full portfolio artwork`} />
+    </main>
+  </BaseLayout>
+) : entry && Content ? (
+  <BaseLayout title={`${entry.data.title} — KORI`} description={entry.data.description}>
+    <article class="case-shell" style={`--accent:${entry.data.accent}`}>
+      <header class="case-header">
+        <p class="eyebrow">{entry.data.role} · {entry.data.year}</p>
+        <h1>{entry.data.title}</h1>
+        <p>{entry.data.description}</p>
+        <div>{entry.data.tags.map((tag: string) => <span>#{tag}</span>)}</div>
+      </header>
+      <div class="article-body"><Content /></div>
+    </article>
+  </BaseLayout>
+) : null}

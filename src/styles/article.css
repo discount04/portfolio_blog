@@ -134,7 +134,6 @@
 .engagement-actions a:hover { background: var(--ink); color: white; }
 .engagement-note { font-size: .78rem; line-height: 1.6; color: #444; margin-bottom: 48px !important; }
 .comments { padding-top: 48px; border-top: 1px solid rgba(17, 17, 17, .35); }
-.giscus, .giscus-frame { width: 100%; }
 
 @media (max-width: 720px) {
   .article-body table { display: block; overflow-x: auto; font-size: .9rem; }

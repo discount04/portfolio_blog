@@ -5,9 +5,12 @@ const { title, description, date, category, cover } = Astro.props;
 ---
 
 <BaseLayout title={`${title} — KORI`} description={description}>
-  <article class="article-shell">
+  <article class="article-shell journal-article">
     <header class="article-header">
-      <p class="eyebrow">{category} · {date}</p>
+      <div class="journal-article-meta">
+        <p class="eyebrow">{category} · {date}</p>
+        <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/journal/`}>← Blogs</a>
+      </div>
       <h1>{title}</h1>
       <p class="article-deck">{description}</p>
     </header>

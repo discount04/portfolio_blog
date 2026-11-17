@@ -1,0 +1,45 @@
+---
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+const { id = 'profile-section' } = Astro.props;
+---
+
+<section id={id} class="figma-profile" aria-labelledby="profile-name">
+  <header class="profile-heading"><h1 id="profile-name">HARIN PARK</h1><p>UXUI Designer</p></header>
+  <aside class="profile-contact">
+    <a href="mailto:halinpark04@gmail.com">halinpark04@gmail.com</a>
+    <a href="tel:+821097072905">+82 10 9707 2905</a>
+    <a href="https://www.instagram.com/madeinkori/" target="_blank" rel="noreferrer">@madeinkori ↗</a>
+    <p>Seoul, Gangnam District</p>
+  </aside>
+  <img class="profile-portrait" src={`${base}images/profile/harin-portrait.png`} alt="하린의 프로필 사진" />
+  <div class="profile-content">
+    <section class="profile-experience">
+      <h2>Experience</h2>
+      <div class="experience-roles">
+        <article><h3><strong>Representative</strong> of<br />UXO - UX Institute at Ewha</h3><time>2026.01–2026.06</time></article>
+        <article><h3><strong>5th Cohort Learner</strong> of<br />Apple Developer Academy @ POSTECH</h3><time>2026.03–</time></article>
+        <article><h3><strong>Designer</strong> of<br />University Makeus Challenge Community</h3><time>2026.03–</time></article>
+      </div>
+      <div class="experience-notes">
+        <p><strong>UXUI Design, Data-driven UX, PM</strong><br />Created Curriculum of Spring-2026<br />Planned and led AIUX Hackathon with Yonsei &amp; Kyunghee UX Institute<br />Led Collaboration with WALLA (Paprika Data Lab Inc.)</p>
+        <p><strong>UXUI Design, Swift UI</strong><br />Designer of Challenge 3 ‘KoriKamen’<br />UXUI Designer, Front Engineer of Challenge 4 ‘Titty’<br />Product Designer of Challenge 6 ‘P-book’</p>
+        <p><strong>UXUI Design, A/B Testing, Design System</strong><br />Main Designer of ‘Co:N-next’ APP</p>
+      </div>
+    </section>
+    <section class="profile-education">
+      <h2>Education</h2>
+      <article><h3>Ewha Womans University</h3><p>Content Convergence + Software (4.12 / 4.5 GPA)</p><small>Seodaemun-gu, Seoul, Republic of Korea</small><time>2023.03–</time></article>
+      <article><h3>University of Iowa</h3><p>Study Abroad Student studying Cinematic Arts + Graphic Design</p><small>Iowa City, Iowa, United States</small><time>2024.12–2025.06</time></article>
+      <article><h3>American International School Of Riyadh</h3><small>Prince Saud Ibn Abdullah Ibn Jalawi, Al Aarid, Riyadh 13332, Saudi Arabia</small><time>2014.03–2017.06</time></article>
+    </section>
+    <section class="profile-extra">
+      <h2>Extra Projects</h2>
+      <article><h3>UXUI Designer of <strong>Apple-ogize</strong></h3><p>2024 Inter-University Convergence Academic Conference</p><time>2024.07–2024.09</time></article>
+      <article><h3>PM &amp; UXUI Designer of PURI</h3><time>2025.09–2025.12</time></article>
+      <h2>Certificate</h2>
+      <article><h3>96 of TOEFL | 920 of TOEIC (2025.08)</h3><time>2024.07–2024.09</time></article>
+      <article><h3>Google Analytics 4 Certificate</h3><time>2026.02. 173650689</time></article>
+    </section>
+  </div>
+  <a class="profile-next" href={`${base}work/`}><span>Click ‘Portfolios’ to check my projects</span><b aria-hidden="true">⌃</b></a>
+</section>

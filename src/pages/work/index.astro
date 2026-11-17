@@ -1,9 +1,69 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+const projects = [
+  { id: 'connext', name: 'Co:N-next', image: 'connext-screen.png', detail: 'connext-detail.jpeg' },
+  { id: 'walla', name: 'WALLA', image: 'walla-screen.png', detail: 'walla-detail.jpeg' },
+  { id: 'korikamen', name: 'KoriKamen', image: 'korikamen-screen.png', detail: 'korikamen-detail.jpeg' },
+  { id: 'apple-ogize', name: 'Apple-ogize', image: 'apple-ogize-figma.png', detail: 'apple-ogize-detail.jpeg' },
+];
+const asset = (name: string) => `${base}images/portfolio/${name}`;
 ---
-<BaseLayout title="Work — KORI">
-  <section class="coming-page blue">
-    <p class="eyebrow">01 / WORK</p>
-    <div><span>COMING SOON</span><h1>작업을 깊게<br />정리하고 있습니다.</h1><p>문제 정의부터 결과와 회고까지, 곧 이곳에서 보여드릴게요.</p></div>
+<BaseLayout title="Portfolios — HARIN PARK">
+  <section class="figma-portfolios" aria-label="Portfolios" data-base={base}>
+    <div class="portfolio-slider" data-portfolio-slider>
+      {projects.map((project, index) => (
+        <article class:list={['portfolio-slide', index === 0 ? 'is-active' : '']} data-slide={index} data-name={project.name} aria-hidden={index !== 0}>
+          <button class="portfolio-original" type="button" data-detail={project.detail} aria-label={`${project.name} 포트폴리오 이미지 크게 보기`}>
+            <img src={asset(project.image)} alt={`${project.name} portfolio Figma 원본 화면`} />
+          </button>
+          <nav class="portfolio-image-nav" aria-label="화면 안 메뉴 링크">
+            <a href={base}>Home</a>
+            <a href={`${base}work/`} aria-current="page">Portfolios</a>
+            <a href={`${base}journal/`}>Blogs</a>
+            <a href={`${base}playground/`}>Playground</a>
+          </nav>
+        </article>
+      ))}
+      <button class="portfolio-control previous" type="button" data-direction="-1" aria-label="이전 포트폴리오"></button>
+      <button class="portfolio-control next" type="button" data-direction="1" aria-label="다음 포트폴리오"></button>
+    </div>
+    <dialog class="artwork-dialog" aria-label="포트폴리오 이미지 크게 보기">
+      <button class="dialog-close" type="button" aria-label="Close">×</button>
+      <div class="dialog-gallery"></div>
+    </dialog>
   </section>
+  <script>
+    const base = document.querySelector<HTMLElement>('.figma-portfolios')?.dataset.base ?? '/';
+    const slider = document.querySelector<HTMLElement>('[data-portfolio-slider]');
+    if (slider) {
+      const slides = [...slider.querySelectorAll<HTMLElement>('[data-slide]')];
+      let active = 0;
+      const setActive = (index: number) => {
+        active = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('is-active', i === active);
+          slide.setAttribute('aria-hidden', String(i !== active));
+        });
+      };
+      slider.querySelectorAll<HTMLButtonElement>('[data-direction]').forEach((button) => {
+        button.addEventListener('click', () => setActive(active + Number(button.dataset.direction)));
+      });
+    }
+
+    const dialog = document.querySelector<HTMLDialogElement>('.artwork-dialog');
+    const gallery = dialog?.querySelector('.dialog-gallery');
+    document.querySelectorAll<HTMLButtonElement>('.portfolio-original').forEach((button) => button.addEventListener('click', () => {
+      if (!dialog || !gallery) return;
+      gallery.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = `${base}images/portfolio/details/${button.dataset.detail}`;
+      img.alt = `${button.querySelector('img')?.alt ?? 'Portfolio'} 전체 이미지`;
+      gallery.append(img);
+      dialog.showModal();
+    }));
+    dialog?.querySelector('.dialog-close')?.addEventListener('click', () => dialog.close());
+    dialog?.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+  </script>
 </BaseLayout>

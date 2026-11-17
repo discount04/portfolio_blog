@@ -9,9 +9,10 @@ const escapeXml = (value: string) => value
   .replaceAll("'", '&apos;');
 
 export const GET: APIRoute = async ({ site }) => {
+  if (!site) throw new Error('The site URL must be configured to render the journal feed.');
   const posts = (await getCollection('journal', ({ data }) => !data.draft))
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-  const root = new URL('/portfolio_blog/', site ?? 'https://discount04.github.io');
+  const root = new URL(`${import.meta.env.BASE_URL.replace(/\/$/, '')}/`, site);
   const items = posts.map((post) => {
     const link = new URL(`journal/${post.id}/`, root).href;
     return `<item><title>${escapeXml(post.data.title)}</title><link>${link}</link><guid>${link}</guid><pubDate>${post.data.date.toUTCString()}</pubDate><description>${escapeXml(post.data.description)}</description></item>`;
