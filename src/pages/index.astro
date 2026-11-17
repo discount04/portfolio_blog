@@ -6,9 +6,11 @@ import ProfileSection from '../components/ProfileSection.astro';
 <BaseLayout title="KORI.com — Product Designer" description="I dive deep, then spread what I discover.">
   <section class="figma-home" aria-label="Harin Park portfolio">
     <div class="figma-home-copy">
-      <h1>HARIN PARK</h1>
+      <h1 aria-label="Insert Harin, You get Experience">
+        <span><i>Insert</i> Harin,</span>
+        <span><i>You get</i> Experience</span>
+      </h1>
     </div>
-    <p class="figma-home-role">UXUI Designer<br />Portfolio</p>
     <a class="figma-scroll" href="#profile-section"><span>Scroll Down to know about ME!</span><b aria-hidden="true">⌄</b></a>
   </section>
   <ProfileSection id="profile-section" />
