@@ -279,9 +279,9 @@ body:has(.figma-profile) .profile-next{bottom:70px}
 }
 
 /* Home headline from the latest supplied reference. */
-body:has(.figma-home) .figma-home-copy{top:18%;left:4.8%;width:90%;max-width:none}
+body:has(.figma-home) .figma-home-copy{top:clamp(52px,6.2vw,108px);left:4.8%;width:90%;max-width:none}
 body:has(.figma-home) .figma-home-copy h1{color:#241e25;font-family:'Plus Jakarta Sans','Noto Sans KR',sans-serif;font-size:clamp(48px,8.2vw,128px);font-weight:800;line-height:.94;letter-spacing:-.075em;white-space:normal}
 body:has(.figma-home) .figma-home-copy h1 span{display:block;color:#241e25;white-space:nowrap}
 body:has(.figma-home) .figma-home-copy h1 i{color:#c4bbc5;font-style:normal}
-@media(max-width:900px){body:has(.figma-home) .figma-home-copy{top:19%;left:4.8%;width:91%}body:has(.figma-home) .figma-home-copy h1{font-size:clamp(40px,8.2vw,80px);line-height:.96;letter-spacing:-.075em}}
-@media(max-width:560px){body:has(.figma-home) .figma-home-copy{top:22%;left:5%;width:90%}body:has(.figma-home) .figma-home-copy h1{font-size:clamp(32px,9vw,50px);letter-spacing:-.07em}}
+@media(max-width:900px){body:has(.figma-home) .figma-home-copy{left:4.8%;width:91%}body:has(.figma-home) .figma-home-copy h1{font-size:clamp(40px,8.2vw,80px);line-height:.96;letter-spacing:-.075em}}
+@media(max-width:560px){body:has(.figma-home) .figma-home-copy{left:5%;width:90%}body:has(.figma-home) .figma-home-copy h1{font-size:clamp(32px,9vw,50px);letter-spacing:-.07em}}
